@@ -1,28 +1,39 @@
 trigger:
-  branches:
-    - main
+  - main  # or your default branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
+# variables:
+#   CYPRESS_CACHE_FOLDER: $(Pipeline.Workspace)/.cache/Cypress
+
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: '18.x'
+      versionSpec: '18.x'  # or the Node version your project uses
     displayName: 'Install Node.js'
 
   - script: |
-      npm install
-    displayName: 'Install Dependencies'
+      npm ci
+    displayName: 'Install dependencies'
 
   - script: |
-      npx cypress run 
-    displayName: 'Run Cypress Tests with JUnit Reporter'
+      npx cypress verify
+    displayName: 'Verify Cypress installation'
+
+  - script: |
+      npx cypress run --reporter mochawesome
+    displayName: 'Run Cypress tests with Mochawesome'
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: '**/cypress/results/*.xml'
-      failTaskOnFailedTests: true
+      testResultsFormat: 'JUnit'  # use if converting mochawesome to junit later
+      testResultsFiles: '**/results.xml'
     condition: succeededOrFailed()
-    displayName: 'Publish Test Results'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: 'cypress/reports/mochawesome'
+      artifactName: 'MochawesomeReport'
+      publishLocation: 'Container'
+    displayName: 'Publish Mochawesome Report Artifact'
