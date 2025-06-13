@@ -4,8 +4,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-# variables:
-#   CYPRESS_CACHE_FOLDER: $(Pipeline.Workspace)/.cache/Cypress
+variables:
+  CYPRESS_CACHE_FOLDER: $(Pipeline.Workspace)/.cache/Cypress
 
 steps:
   - task: NodeTool@0
