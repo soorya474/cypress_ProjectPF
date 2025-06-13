@@ -16,7 +16,7 @@ steps:
     displayName: 'Install Dependencies'
 
   - script: |
-      npx cypress run --reporter junit --reporter-options "mochaFile=cypress/results/results-[hash].xml"
+      npx cypress run 
     displayName: 'Run Cypress Tests with JUnit Reporter'
 
   - task: PublishTestResults@2
