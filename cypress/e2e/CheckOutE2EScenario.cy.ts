@@ -1,8 +1,10 @@
-import LoginPage from "cypress/businessLogic/LoginPage.cy";
-import Products from "cypress/businessLogic/ProductsPage.cy";
-import CheckOut from "cypress/businessLogic/CheckOutInfoPage.cy";
+//import LoginPage from "cypress/businessLogic/LoginPage.cy";
+
+import CheckOut from "../businessLogic/CheckOutInfoPage.cy";
+import LoginPage from "../businessLogic/LoginPage.cy";
+import Products from "../businessLogic/ProductsPage.cy";
 //import CheckOut from 
-const testData=require('../fixtures/QA.json')
+import testData from '../fixtures/QA.json';
 let   lp=new LoginPage();
 let pdt=new Products();
 let ckOut=new CheckOut();

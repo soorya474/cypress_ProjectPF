@@ -1,4 +1,4 @@
-const testData=require('../fixtures/QA.json')
+import testData from '../fixtures/QA.json';
 class CheckOut{
    private firstName="#first-name";
    private lastName="#last-name";
