@@ -24,6 +24,7 @@ export default defineConfig({
     },
   },
   env:{
-    "baseUrl":"https://www.saucedemo.com/"
+    "baseUrl":"https://www.saucedemo.com/",
+    experimentalSessionAndOrigin: true,
   }
 });

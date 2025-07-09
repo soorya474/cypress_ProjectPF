@@ -15,11 +15,14 @@ describe('Adding to Cart and Checkout Scenario',() =>{
     //     cy.visit(Cypress.env("baseUrl"));        
     // }); 
     
-it("Login to the application",function(){
-    cy.visit(Cypress.env("baseUrl"));  
+
+    beforeEach(()=>{
+        cy.visit(Cypress.env("baseUrl"));  
     lp.enterUserName(testData.userName);
     lp.enterPassword(testData.password);
     lp.clickOnLogin();
+    });
+    it("Login to the application",function(){
     pdt.clickOnAnyProduct(testData.pdtName)
     //pdt.clickOnAddToCart();
     pdt.clickOnCartButton();

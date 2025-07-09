@@ -48,7 +48,10 @@ class Products{
     });
 
 }
-
+ /**
+   * get all the products
+   * 
+   */
   getAllProducts(){
    
     cy.get(this.pdtList).each(($el,index,$list)=>{
@@ -58,6 +61,11 @@ class Products{
       })
     })
   }
+
+   /**
+   * Validate product is present or not
+   * 
+   */
   validatePdtIsPresentOrNot(pdtName:string){
     let found:boolean;
     cy.get(this.pdtList).each(($el)=>{

@@ -10,12 +10,15 @@ let ckOut=new CheckOut();
 
 
 describe('Get all the products',()=>{
-    it('Get All Products List',()=>{
+beforeEach('Get All Products List',()=>{
         cy.visit(Cypress.env("baseUrl"));  
         lp.enterUserName(testData.userName);
         lp.enterPassword(testData.password);
         lp.clickOnLogin();
+       
+    });
+it('Get All Products List',()=>{
         pdt.getAllProducts();
         pdt.validatePdtIsPresentOrNot(testData.pdtName);
-    })
+});
 })
