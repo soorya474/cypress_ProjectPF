@@ -1,4 +1,4 @@
-import ConstantsPage from "../../../utils/Constants.cy";
+import ConstantsPage from "../../../../utils/Constants.cy";
 
 describe('create booking',()=>{//describe--from mocha
     it('craete booking',()=>{
@@ -20,6 +20,16 @@ describe('create booking',()=>{//describe--from mocha
         }).then((res)=>{
             console.log("Response is"+ JSON.stringify(res))
             expect(res.status).to.equal(200);//expect from chai assertions
-            })
+            const id=res.body.bookingid;
+            const firstName=res.body.booking.firstname;
+            cy.request({
+            method:'GET',
+            url:ConstantsPage.baseUrl+ConstantsPage.bookingEndPoint+"/"+id,
+        }).then((res)=>{
+             console.log("Response is"+ JSON.stringify(res))
+            expect(res.status).to.equal(200);
+            expect(res.body.firstname).to.equal(firstName);
         })
-    })
+        })
+    });
+})
